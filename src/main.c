@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 22:49:34 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 23:28:59 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@ int main(int argc, char **argv, char **envp)
     int i;
 
 	g_envp = envp;
-    f1 = open(argv[1], O_RDONLY);
+
+    if (argc < 5)
+        return (-1);
     
+    f1 = open(argv[1], O_RDONLY);
     f2 = open(argv[argc-1], O_CREAT | O_RDWR | O_TRUNC, 0644);
     if (f1 < 0 || f2 < 0)
         return (-1);
     i = 1;
-
-    //copy_file(f1, f2);
-
-    close(f1);
-    close(f2);
+    
 
     //while (i++ < argc-3)
     //{
@@ -47,5 +46,8 @@ int main(int argc, char **argv, char **envp)
     //pipex(f1, 1);
     //pipex(1, f2);
    
+    close(f1);
+    close(f2);
+    
     return (0);
 }
