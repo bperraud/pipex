@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 02:26:23 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 03:03:00 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	pipex(int f1, int f2, char** argv)
     close(end[0]);         		     // this is the parent
     close(end[1]);        			 // doing nothing
     waitpid(child1, &status, 0); 	 // supervising the children
-    waitpid(child2, &status, 0); 	 // while they finish their tasks	
+    waitpid(child2, &status, 0); 	 // while they finish their tasks
 }
 
 void	child_one(int f1, int end[2], char **cmd1, char **paths)

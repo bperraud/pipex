@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 02:46:01 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 03:08:22 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,15 @@ void	free_all();
 void	child_one(int f1, int end[2], char **cmd1, char **paths);
 void	child_two(int f2, int end[2], char **cmd1, char **paths);
 
-
 char	*create_path(char *path, char *arg);
+
+// utils
+char	**ft_split(char const *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup(const char *s1);
+size_t	ft_strlen(const char *s);
 
 #endif
 
