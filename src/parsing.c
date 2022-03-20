@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 02:26:18 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 03:41:55 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ char	*create_path(char *path, char *arg)
 	cmd = ft_strjoin(cmd, arg); 	 // add "/" for each path + cmd1
 
 	return (cmd);
+}
+
+void	copy_file(int f1, int f2)
+{
+	char	*str;
+
+	str = ft_strdup(" ");
+	while (!str)
+	{
+		free(str);
+		str = get_next_line(f1);
+		write(f2, str, ft_strlen(str));
+	}
 }

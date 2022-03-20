@@ -6,11 +6,12 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 03:08:42 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 03:46:54 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+#include "../include/get_next_line.h"
 
 char **g_envp;
 
@@ -27,7 +28,12 @@ int main(int argc, char **argv, char **envp)
     argc -= 4;
     while (argc--)
     {
+        printf("here\n");
         pipex(f1, f2, argv);
+        close(f1);      // sur ? 
+        f1 = f2;        // pas fermé ? 
+        f2 = open("file3", O_WRONLY);       // nom de fichier qui n'existe pas déjà
+        copy_file(f1, f2);
     }
     return (0);
 }
