@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 02:26:02 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 02:46:01 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define PIPEX_H
 
 # include "stdio.h"
-# include "../libft/libft.h"
+
+
 # include "stdlib.h"
 # include "unistd.h"
 # include "fcntl.h"
