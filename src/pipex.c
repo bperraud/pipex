@@ -6,13 +6,13 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 03:03:00 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 20:56:58 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	pipex(int f1, int f2, char** argv)
+void	pipex(int f1, int f2, char** argv, int index)
 {
 	int		end[2];
     int		status;
@@ -24,8 +24,8 @@ void	pipex(int f1, int f2, char** argv)
 	char	**cmd2;
 	
 	paths = parsing(g_envp);				// all path
-	cmd1 = ft_split(argv[2], ' ');			// cmd 1 args { "ls", "-la", NULL }
-	cmd2 = ft_split(argv[3], ' ');			// cmd 2 args
+	cmd1 = ft_split(argv[index], ' ');			// cmd 1 args { "ls", "-la", NULL }
+	cmd2 = ft_split(argv[index+1], ' ');			// cmd 2 args
 	if (!paths | !cmd1 | !cmd2)
 		return (free_all());
 

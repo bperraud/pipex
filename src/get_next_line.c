@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 03:25:46 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 03:32:50 by bperraud         ###   ########.fr       */
+/*   Created: 2022/01/28 15:22:45 by bperraud          #+#    #+#             */
+/*   Updated: 2022/03/20 22:48:27 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*true_gnl(int fd)
 	while (ret == BUFFER_SIZE && ft_memchr(buff, '\n', BUFFER_SIZE) == NULL)
 	{
 		temp = line;
-		line = ft_strjoin(line, buff);
+		line = ft_strjoin_gnl(line, buff);
 		free(temp);
 		ret = read(fd, buff, BUFFER_SIZE);
 	}
@@ -62,7 +62,7 @@ char	*true_gnl_2(long ret, char *line, char *buff, char *temp)
 			line = end_of_line(line, buff);
 		else
 		{
-			line = ft_strjoin(line, buff);
+			line = ft_strjoin_gnl(line, buff);
 			while (ret--)
 				*buff++ = 0;
 		}
@@ -75,10 +75,10 @@ char	*end_of_line(char *line, char *buff)
 {
 	char	**split;
 
-	split = ft_split(buff, '\n');
+	split = ft_split_gnl(buff, '\n');
 	if (split)
 	{
-		line = ft_strjoin(line, split[0]);
+		line = ft_strjoin_gnl(line, split[0]);
 		ft_strncpy_gnl(buff, split[1], BUFFER_SIZE);
 		free(split[0]);
 		free(split[1]);

@@ -5,12 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 03:26:45 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 03:37:44 by bperraud         ###   ########.fr       */
+/*   Created: 2022/01/28 16:04:39 by bperraud          #+#    #+#             */
+/*   Updated: 2022/03/20 22:48:46 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
+
+size_t	ft_strlen_gnl(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 void	*ft_memchr(const void *s, int c, long n)
 {
@@ -51,6 +61,24 @@ char	*ft_strncpy_gnl(char *dest, const char *src, long n)
 	return (dest);
 }
 
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	lens1;
+	size_t	lens2;
+
+	if (!s1 || !s2)
+		return (NULL);
+	lens1 = ft_strlen_gnl(s1);
+	lens2 = ft_strlen_gnl(s2);
+	str = malloc((lens1 + lens2 + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strncpy_gnl(str, s1, lens1);
+	ft_strncpy_gnl(str + lens1, s2, ft_strlen_gnl(s2));
+	return (str);
+}
+
 char	**ft_split_gnl(char const *str, const char c)
 {
 	char	**dest;
@@ -76,4 +104,5 @@ char	**ft_split_gnl(char const *str, const char c)
 		i++;
 	}
 	dest[2] = NULL;
-}	 
+	return (dest);
+}

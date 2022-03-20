@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 03:43:11 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:05:34 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "stdio.h"
 
-
 # include "stdlib.h"
 # include "unistd.h"
 # include "fcntl.h"
@@ -23,7 +22,7 @@
 
 extern	char **g_envp;
 
-void	pipex(int f1, int f2, char** argv);
+void	pipex(int f1, int f2, char** argv, int index);
 char	**parsing(char **envp);
 void	free_all();
 

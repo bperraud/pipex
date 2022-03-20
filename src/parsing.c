@@ -6,11 +6,12 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 03:41:55 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:54:59 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+#include "../include/get_next_line.h"
 
 char	**parsing(char **envp)
 {
@@ -38,11 +39,12 @@ void	copy_file(int f1, int f2)
 {
 	char	*str;
 
-	str = ft_strdup(" ");
-	while (!str)
+	str = ft_strdup("yo");
+	while (str)
 	{
 		free(str);
 		str = get_next_line(f1);
-		write(f2, str, ft_strlen(str));
+		printf("%s", str);
+		//write(f2, str, ft_strlen(str));
 	}
 }
