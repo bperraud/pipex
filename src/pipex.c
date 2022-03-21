@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 20:56:58 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/21 01:01:29 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	pipex(int f1, int f2, char** argv, int index)
 	if (!paths | !cmd1 | !cmd2)
 		return (free_all());
 
-	//execve(cmd, cmd1, g_envp); // if execve succeeds, it exits		
+
+
+	printf("cmd 1 :%s\n", cmd1[0]);		
+	printf("cmd 2 :%s\n", cmd2[0]);	
 	pipe(end);  // a proteger
 
 
@@ -59,8 +62,8 @@ void	child_one(int f1, int end[2], char **cmd1, char **paths)
 	//if (dup2(f1, STDIN_FILENO) < 0 || dup2(end[1], STDOUT_FILENO) < 0)			// we want f1 to be execve() input and end[1] to be execve() stdout
 		//return (free_all());
 
-	dup2(f1, STDIN_FILENO); // we want f1 to be execve() input
-	dup2(end[1], STDOUT_FILENO); // we want end[1] to be execve() stdout	
+	dup2(f1, STDIN_FILENO); 		// we want f1 to be execve() input
+	dup2(end[1], STDOUT_FILENO); 	// we want end[1] to be execve() stdout	
 	close(end[0]);
 	close(f1);
 	
