@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/21 01:01:29 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:08:33 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	pipex(int f1, int f2, char** argv, int index)
 	cmd2 = ft_split(argv[index+1], ' ');			// cmd 2 args
 	if (!paths | !cmd1 | !cmd2)
 		return (free_all());
-
 
 
 	printf("cmd 1 :%s\n", cmd1[0]);		
@@ -86,6 +85,7 @@ void	child_one(int f1, int end[2], char **cmd1, char **paths)
 		*/
 		free(cmd);					// if execve fails, we free and we try a new path
 	}
+	exit(EXIT_FAILURE);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/21 01:18:47 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:35:19 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ int main(int argc, char **argv, char **envp)
     int	f1;
     int	f2;
     int i;
+    int cmd;
 
     if (argc < 5)
         return (-1); 
-	
+    
+
+    cmd = argc - 3;
     g_envp = envp;
     f1 = open(argv[1], O_RDONLY);
     //f2 = open(argv[1], O_RDWR);
@@ -33,8 +36,13 @@ int main(int argc, char **argv, char **envp)
     
     i = 2; // cmd 2 + 3
     //int f3 = open("file3", o_creat | o_rdwr);
+
+    pipex(f1, f2, argv, i);
+
+    /*
     while (i < argc - 1)
     {
+        // seul condition si dernier file = file2 -> delete f3 ; si dernier file = file3 -> copie dans f2 puis delete f3
         printf("i : %i\n", i);
         pipex(f1, f2, argv, i);
         close(f1);      // logique 
@@ -53,6 +61,15 @@ int main(int argc, char **argv, char **envp)
 
         i += 2;
     }
+    */
+    if (cmd%2 == 1) // nombre de commande impair
+    {
+        ;// derniere commande sur file2 seul
+
+    }
+
+    
+
     
     //pipex(f1, 1);
     //pipex(1, f2);

@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 23:47:27 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:38:28 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char	**parsing(char **envp)
 char	*create_path(char *path, char *arg)
 {
 	char	*cmd;
+	char	*temp;
 
-	cmd = ft_strjoin(path, "/"); 	 // add "/" for each path + cmd1
-	// free ici	
-	cmd = ft_strjoin(cmd, arg); 	 // add "/" for each path + cmd1
-
+	temp = ft_strjoin(path, "/"); 	 // add "/" for each path + cmd1
+	cmd = ft_strjoin(temp, arg); 	 // add "/" for each path + cmd1
+	free(temp);
 	return (cmd);
 }
 
@@ -45,5 +45,39 @@ void	copy_file(int f1, int f2)
 		write(f2, str, ft_strlen(str));
 		free(str);
 		str = get_next_line(f1);
+	}
+}
+
+
+void	delete_file(char *file, char **envp)
+{
+	char	**paths;
+	int		i;
+	char	*cmd;
+	pid_t	child;
+
+	child = fork();
+    if (child < 0)
+         return (perror("Fork: "));
+
+	//char	**cmd_arg = { "rm", file, NULL};  
+     
+	if (child == 0)
+    {
+		paths = parsing(envp);
+		i = -1;
+		while (paths[++i])
+		{
+            printf("cmdpaths : %s\n", paths[i]);    
+
+			cmd = create_path(paths[i], "rm");
+            char	*cmd_arg[] =  {cmd, file, NULL}; 
+
+            printf("cmd : %s\n", cmd);
+            perror("child\n");
+			execve(cmd, cmd_arg, envp);
+			free(cmd);
+		}
+        exit(EXIT_FAILURE);	
 	}
 }
