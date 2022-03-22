@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 22:05:34 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/22 03:04:16 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "stdio.h"
 
+
 # include "stdlib.h"
 # include "unistd.h"
 # include "fcntl.h"
@@ -22,18 +23,21 @@
 
 extern	char **g_envp;
 
+//pipex
 void	pipex(int f1, int f2, char** argv, int index);
-char	**parsing(char **envp);
-void	free_all();
 
+void	pipe_alone(int f1, int f2, char* arg);
+
+
+void	exec(char **cmd, char **paths);
+void	free_all();
 void	child_one(int f1, int end[2], char **cmd1, char **paths);
 void	child_two(int f2, int end[2], char **cmd1, char **paths);
 
-char	*create_path(char *path, char *arg);
-
-
 //files
+char	**parsing(char **envp);
 void	copy_file(int f1, int f2);
+char	*create_path(char *path, char *arg);
 
 // utils
 char	**ft_split(char const *s, char c);
