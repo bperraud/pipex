@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/22 16:27:08 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 00:52:59 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	pipex(int f1, int f2, char** argv, int index)
 	cmd1 = ft_split(argv[index], ' ');			// cmd 1 args { "ls", "-la", NULL }	
 	cmd2 = ft_split(argv[index+1], ' ');			// cmd 2 args
 	if (!paths | !cmd1 | !cmd2)
-		return (free_all());
+		return (free_all(cmd1, cmd2, paths));
 
 	pipe(end);  // a proteger
 
@@ -66,34 +66,27 @@ void	pipex(int f1, int f2, char** argv, int index)
     waitpid(child2, &status, 0); 	 // while they finish their tasks
 }
 
-void	child_one(int f1, int end[2], char **cmd1, char **paths)
+void	child_one(int f1, int end[2], char **cmd_arg, char **paths)
 {
-	//if (dup2(f1, STDIN_FILENO) < 0 || dup2(end[1], STDOUT_FILENO) < 0)			// we want f1 to be execve() input and end[1] to be execve() stdout
-		//return (free_all());
-	dup2(f1, STDIN_FILENO); 		// f1 is execve() input
-	dup2(end[1], STDOUT_FILENO); 	// end[1] is execve() stdout
-	
+	if (dup2(f1, STDIN_FILENO) < 0 || dup2(end[1], STDOUT_FILENO) < 0)
+	{
+		perror("dup issue\n");
+		return ;
+	}
 	close(end[0]);
-	close(f1);
-	
-	exec(cmd1, paths);
+	exec(cmd_arg, paths);
 	exit(EXIT_SUCCESS);
 }
 
-void	child_two(int f2, int end[2], char **cmd2, char **paths)
+void	child_two(int f2, int end[2], char **cmd_arg, char **paths)
 {
-	// dup2 close stdin, f1 becomes the new stdin
-	
-	//if (dup2(f1, STDIN_FILENO) < 0 || dup2(end[1], STDOUT_FILENO) < 0)			// we want f1 to be execve() input and end[1] to be execve() stdout
-		//return (free_all());
-
-	dup2(end[0], STDIN_FILENO); 			// end[1] is execve() input
-	dup2(f2, STDOUT_FILENO); 				//  f2 is execve() stdout	
-
+	if (dup2(end[0], STDIN_FILENO) < 0 || dup2(f2, STDOUT_FILENO) < 0)
+	{
+		perror("dup issue\n");
+		return ;
+	}
 	close(end[1]);
-	close(f2);
-
-	exec(cmd2, paths);
+	exec(cmd_arg, paths);
 	exit(EXIT_SUCCESS);
 }
 
@@ -107,23 +100,30 @@ void	exec(char **cmd_arg, char **paths)
 	{
 		cmd = create_path(paths[i], cmd_arg[0]);
 		if (!cmd)
-			return (free_all());			 // perror("Error"); <- add perror to debug
-		execve(cmd, cmd_arg, g_envp);
-		perror("1 ");
-		/*
-		if (execve(cmd, cmd1, g_envp) > 0) // if execve succeeds, it exits	
 		{
-			perror("fonctionne");
-			free(cmd);
-			free_all(cmd); 
-			break;
-		}	
-		*/
-		free(cmd);					// if execve fails, we free and we try a new path
+			perror("cannot allocate memory\n");
+			return (free(cmd));
+		}
+		execve(cmd, cmd_arg, g_envp); // if execve succeeds, it exits	
+		free(cmd);
 	}
 }
 
-void	free_all()
+void	free_all(char **cmd1, char **cmd2, char **path)
 {
+	free_tab(cmd1);
+	free_tab(cmd2);
+	free_tab(path);
+	return ;
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 	return ;
 }

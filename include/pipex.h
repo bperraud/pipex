@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/22 03:04:16 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 00:49:36 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "unistd.h"
 # include "fcntl.h"
 # include "wait.h"
+
+# define FILE_NAME "file3"
 
 extern	char **g_envp;
 
@@ -47,6 +49,9 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 
+//free
+void	free_all(char **cmd1, char **cmd2, char **path);
+void	free_tab(char **tab);
 #endif
 
 

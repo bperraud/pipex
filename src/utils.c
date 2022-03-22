@@ -6,21 +6,11 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 21:21:30 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 02:47:56 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 00:33:46 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (*s++)
-		i++;
-	return (i);
-}
 
 char	*ft_strdup(const char *s1)
 {
@@ -104,19 +94,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strncpy(str + lens1, s2, ft_strlen(s2));
 	return (str);
 }
-
-static char	*ft_strcpy(char *dest, const char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-

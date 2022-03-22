@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/22 16:52:09 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 00:33:57 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 char	**parsing(char **envp)
 {
 	int		i;
-	//char	**cmd_args;
+	char	*str;
+	char	**split;
 
 	i = 0;
 	while (ft_strncmp(envp[i], "PATH", 4) != 0)
 		i++;
-	return (ft_split(ft_substr(envp[i], 5, ft_strlen(envp[i])), ':'));
+	str = ft_substr(envp[i], 5, ft_strlen(envp[i]));
+	split = ft_split(str, ':');
+	free(str);
+	return (split);
 }
 
 char	*create_path(char *path, char *arg)
@@ -29,14 +33,23 @@ char	*create_path(char *path, char *arg)
 	char	*cmd;
 	char	*temp;
 
-	temp = ft_strjoin(path, "/"); 	 // add "/" for each path + cmd1
-	cmd = ft_strjoin(temp, arg); 	 // add "/" for each path + cmd1
+	temp = ft_strjoin(path, "/");
+	cmd = ft_strjoin(temp, arg);
 	free(temp);
 	return (cmd);
 }
 
+size_t	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (*s++)
+		i++;
+	return (i);
+}
 /*
-//	copy f1 content into f2
+	copy f1 content into f2
 */
 void	copy_file(int f1, int f2)
 {
@@ -48,39 +61,5 @@ void	copy_file(int f1, int f2)
 		write(f2, str, ft_strlen(str));
 		free(str);
 		str = get_next_line(f1);
-	}
-}
-
-
-void	delete_file(char *file, char **envp)
-{
-	char	**paths;
-	int		i;
-	char	*cmd;
-	pid_t	child;
-
-	child = fork();
-    if (child < 0)
-         return (perror("Fork: "));
-
-	//char	**cmd_arg = { "rm", file, NULL};  
-     
-	if (child == 0)
-    {
-		paths = parsing(envp);
-		i = -1;
-		while (paths[++i])
-		{
-            printf("cmdpaths : %s\n", paths[i]);    
-
-			cmd = create_path(paths[i], "rm");
-            char	*cmd_arg[] =  {cmd, file, NULL}; 
-
-            printf("cmd : %s\n", cmd);
-            perror("child\n");
-			execve(cmd, cmd_arg, envp);
-			free(cmd);
-		}
-        exit(EXIT_FAILURE);	
 	}
 }
