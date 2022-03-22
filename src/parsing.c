@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/21 17:38:28 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:52:09 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ char	*create_path(char *path, char *arg)
 	return (cmd);
 }
 
+/*
+//	copy f1 content into f2
+*/
 void	copy_file(int f1, int f2)
 {
 	char	*str;
