@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 00:33:57 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 01:46:40 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,6 @@ char	*create_path(char *path, char *arg)
 	return (cmd);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (*s++)
-		i++;
-	return (i);
-}
 /*
 	copy f1 content into f2
 */
@@ -55,6 +46,8 @@ void	copy_file(int f1, int f2)
 {
 	char	*str;
 
+	if (f1 < 0 || f2 < 0)
+		return ;
 	str = get_next_line(f1);
 	while (str)
 	{

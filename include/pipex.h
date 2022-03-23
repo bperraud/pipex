@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 00:49:36 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 02:32:58 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@
 
 extern	char **g_envp;
 
+//main
+void    main2(int i, int argc, char **argv);
+
 //pipex
 void	pipex(int f1, int f2, char** argv, int index);
-
+void	pipex2(int f1, int f2, char** paths, char **cmd1, char **cmd2);
 void	pipe_alone(int f1, int f2, char* arg);
-
-
 void	exec(char **cmd, char **paths);
-void	free_all();
 void	child_one(int f1, int end[2], char **cmd1, char **paths);
 void	child_two(int f2, int end[2], char **cmd1, char **paths);
 
