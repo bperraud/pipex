@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 03:50:43 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:20:19 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,15 @@ void	pipex2(int f1, int f2, char** paths, char **cmd1, char **cmd2)
     pid_t	child2;
 
 	if (pipe(end) == -1)
-	{
-		free_all(cmd1, cmd2, paths);
-		return (perror("Pipe: "));
-	}
+		exit_error(cmd1, cmd2, paths, "Pipe: ");
     child1 = fork();
     if (child1 < 0)
-	{
-		free_all(cmd1, cmd2, paths);
-		return (perror("Fork: "));
-	}
+		exit_error(cmd1, cmd2, paths, "Fork: ");
     if (child1 == 0)
 		child_one(f1, end, cmd1, paths);
     child2 = fork();
     if (child2 < 0)
-	{
-		free_all(cmd1, cmd2, paths);
-		return (perror("Fork: "));
-	}
+		exit_error(cmd1, cmd2, paths, "Fork: ");
     if (child2 == 0)
 		child_two(f2, end, cmd2, paths);
 	free_all(cmd1, cmd2, paths);
@@ -92,7 +83,7 @@ void	child_one(int f1, int end[2], char **cmd_arg, char **paths)
 	if (dup2(f1, STDIN_FILENO) < 0 || dup2(end[1], STDOUT_FILENO) < 0)
 	{
 		perror("Dup: ");
-		return ;
+		exit(EXIT_FAILURE);
 	}
 	close(end[0]);
 	exec(cmd_arg, paths);
@@ -104,7 +95,7 @@ void	child_two(int f2, int end[2], char **cmd_arg, char **paths)
 	if (dup2(end[0], STDIN_FILENO) < 0 || dup2(f2, STDOUT_FILENO) < 0)
 	{
 		perror("Dup: ");
-		return ;
+		exit(EXIT_FAILURE);
 	}
 	close(end[1]);
 	exec(cmd_arg, paths);
@@ -128,4 +119,7 @@ void	exec(char **cmd_arg, char **paths)
 		execve(cmd, cmd_arg, g_envp); // if execve succeeds, it exits	
 		free(cmd);
 	}
+	ft_putstr_fd("-bash: ", 2);
+	ft_putstr_fd(cmd_arg[0], 2);
+	ft_putstr_fd(":  command not found\n", 2);
 }

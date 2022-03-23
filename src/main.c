@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 04:09:23 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:15:39 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int main(int argc, char **argv, char **envp)
     int i;
 
     i = 2;
-    //if (argc < 5)
-        //return (-1); 
+    if (argc < 5)
+        return (-1); 
     g_envp = envp;
     main2(i, argc, argv);   
     return (0);

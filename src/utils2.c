@@ -12,6 +12,14 @@
 
 #include "../include/pipex.h"
 
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	while (*s)
+		write(fd, s++, 1);
+}
+
 size_t	ft_strlen(const char *s)
 {
 	int	i;
@@ -22,12 +30,19 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+void	exit_error(char **cmd1, char **cmd2, char **path, char *error)
+{
+	free_all(cmd1, cmd2, path);
+	perror(error);
+	exit(EXIT_FAILURE);
+}
+
+
 void	free_all(char **cmd1, char **cmd2, char **path)
 {
 	free_tab(cmd1);
 	free_tab(cmd2);
 	free_tab(path);
-	return ;
 }
 
 void	free_tab(char **tab)
@@ -38,5 +53,4 @@ void	free_tab(char **tab)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
-	return ;
 }

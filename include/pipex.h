@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 03:23:18 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:19:48 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "unistd.h"
 # include "fcntl.h"
 # include "wait.h"
+# include "errno.h"
 
 # define FILE_NAME "file3"
 
@@ -48,8 +49,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
+void	ft_putstr_fd(char *s, int fd);
+
 
 //free
+void	exit_error(char **cmd1, char **cmd2, char **path, char *error);
 void	free_all(char **cmd1, char **cmd2, char **path);
 void	free_tab(char **tab);
 #endif
