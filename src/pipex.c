@@ -6,28 +6,29 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 01:23:31 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:50:43 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	pipe_alone(int f1, int f2, char* arg)
+void	pipex_alone(int f1, int f2, char* arg)
 {
 	int	status;
+	int	child;
+	char **paths;
+	char **cmd_arg;
 
+	paths = parsing(g_envp);				// all path
+	cmd_arg = ft_split(arg, ' ');			// cmd 1 args { "ls", "-la", NULL }	
 	dup2(f1, STDIN_FILENO);
-    dup2(f2, STDOUT_FILENO);
-
-    char **paths = parsing(g_envp);				// all path
-    char **cmd_arg = ft_split(arg, ' ');			// cmd 1 args { "ls", "-la", NULL }	
-    
-	int child1 = fork();
-    if (child1 < 0)
+	dup2(f2, STDOUT_FILENO);
+	child = fork();
+    if (child < 0)
 		return (perror("Fork: "));
-    if (child1 == 0)
-		exec(cmd_arg, paths);
-	waitpid(child1, &status, 0); 	 // supervising the children	
+    if (child == 0)
+		exec(cmd_arg, paths);	
+	waitpid(child, &status, 0); 	 // supervising the children	
 }
 
 void	pipex(int f1, int f2, char** argv, int index)

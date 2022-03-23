@@ -6,11 +6,25 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 21:21:30 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 00:33:46 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:58:19 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+static char	*ft_strcpy(char *dest, const char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 char	*ft_strdup(const char *s1)
 {
@@ -19,6 +33,7 @@ char	*ft_strdup(const char *s1)
 	dest = malloc(((ft_strlen(s1)) + 1) * sizeof(char));
 	if (!dest)
 		return (NULL);
+	return (ft_strcpy(dest, s1));
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
