@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/24 01:47:56 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/24 02:11:04 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 extern	char **g_envp;
 
 //main
-void    main2(int i, int argc, char **argv);
+void    start(int i, int argc, char **argv);
+int		limiter(char *limiter);
 
 //pipex
 void	pipex(int f1, int f2, char** argv, int index);
