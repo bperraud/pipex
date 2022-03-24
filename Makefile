@@ -6,11 +6,11 @@
 #    By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 19:18:03 by bperraud          #+#    #+#              #
-#    Updated: 2022/03/24 00:59:02 by bperraud         ###   ########.fr        #
+#    Updated: 2022/03/24 01:53:15 by bperraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			    = main.c pipex.c files.c utils.c utils2.c process.c split.c get_next_line.c get_next_line_utils.c
+SRC			    = main.c pipex.c files.c utils.c utils2.c split.c get_next_line.c get_next_line_utils.c process.c
 
 CC				= gcc
 RM				= rm -f

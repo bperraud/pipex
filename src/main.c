@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/24 01:05:38 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/24 01:50:57 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	main2(int i, int argc, char **argv)
 		f3 = open_file(FILE_NAME, CREATE);
 		f2 = open_file(argv[argc - 1], READ);
 		copy_file(f2, f3);
-		f2 = open_file(argv[argc - 1], CREATE);
 		f3 = open_file(FILE_NAME, READ);
-		if ((argc % 2 == 0) && (i == argc - 2))
+		f2 = open_file(argv[argc - 1], CREATE);
+		if (argc % 2 == 0 && i == argc - 2)
 			pipex_alone(f3, f2, argv[i]);
 		else
 			pipex(f3, f2, argv, i);

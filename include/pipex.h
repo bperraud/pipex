@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/24 01:08:35 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/24 01:47:56 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 # define PIPEX_H
 
 # include "stdio.h"
-
-
 # include "stdlib.h"
 # include "unistd.h"
 # include "fcntl.h"
 # include "wait.h"
 # include "errno.h"
 
-# define FILE_NAME "file3"
+# define FILE_NAME "filenameyouwontthinkabout"
 # define READ 1
 # define CREATE 0
 
