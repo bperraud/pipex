@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/23 17:19:48 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/24 01:08:35 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "errno.h"
 
 # define FILE_NAME "file3"
+# define READ 1
+# define CREATE 0
 
 extern	char **g_envp;
 
@@ -31,16 +33,20 @@ void    main2(int i, int argc, char **argv);
 
 //pipex
 void	pipex(int f1, int f2, char** argv, int index);
-void	pipex2(int f1, int f2, char** paths, char **cmd1, char **cmd2);
+void	pipex2(int f[2], char** paths, char **cmd1, char **cmd2);
 void	pipex_alone(int f1, int f2, char* arg);
+
+//process
 void	exec(char **cmd, char **paths);
 void	child_one(int f1, int end[2], char **cmd1, char **paths);
 void	child_two(int f2, int end[2], char **cmd1, char **paths);
+void	wait_proccess(pid_t child1, pid_t child2, int end[2]);
 
 //files
 char	**parsing(char **envp);
 void	copy_file(int f1, int f2);
 char	*create_path(char *path, char *arg);
+int		open_file(char *file, int mode);
 
 // utils
 char	**ft_split(char const *s, char c);
@@ -50,13 +56,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
-
-
-//free
 void	exit_error(char **cmd1, char **cmd2, char **path, char *error);
 void	free_all(char **cmd1, char **cmd2, char **path);
-void	free_tab(char **tab);
+
 #endif
-
-
-

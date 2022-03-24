@@ -37,15 +37,7 @@ void	exit_error(char **cmd1, char **cmd2, char **path, char *error)
 	exit(EXIT_FAILURE);
 }
 
-
-void	free_all(char **cmd1, char **cmd2, char **path)
-{
-	free_tab(cmd1);
-	free_tab(cmd2);
-	free_tab(path);
-}
-
-void	free_tab(char **tab)
+static void	free_tab(char **tab)
 {
 	int	i;
 
@@ -53,4 +45,11 @@ void	free_tab(char **tab)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
+}
+
+void	free_all(char **cmd1, char **cmd2, char **path)
+{
+	free_tab(cmd1);
+	free_tab(cmd2);
+	free_tab(path);
 }
