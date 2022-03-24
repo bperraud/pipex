@@ -6,28 +6,23 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/24 01:47:35 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/25 00:17:39 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 #include "../include/get_next_line.h"
 
-int	open_file(char *file, int mode)
+int	open_file(char *file)
 {
-	if (mode == READ)
+	if (access(file, F_OK) == -1)
 	{
-		if (access(file, F_OK) == -1)
-		{
-			ft_putstr_fd("pipex: ", 2);
-			ft_putstr_fd(file, 2);
-			ft_putstr_fd(": No such file or directory\n", 2);
-			return (-1);
-		}
-		return (open(file, O_RDONLY));
+		ft_putstr_fd("pipex: ", 2);
+		ft_putstr_fd(file, 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		return (-1);
 	}
-	else
-		return (open(file, O_CREAT | O_RDWR | O_TRUNC, 0644));
+	return (open(file, O_RDONLY));
 }
 
 char	**parsing(char **envp)

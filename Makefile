@@ -6,7 +6,7 @@
 #    By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 19:18:03 by bperraud          #+#    #+#              #
-#    Updated: 2022/03/24 01:53:15 by bperraud         ###   ########.fr        #
+#    Updated: 2022/03/25 00:42:51 by bperraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,17 @@ OBJ	  			= $(SRC:.c=.o)
 
 NAME			= pipex
 
-all:			$(NAME)
+all:			tmp $(NAME)
 
 $(NAME): 		$(OBJ)
 				$(CC) $(OBJ) -o $(NAME)
 
 %.o:        	$(SDIR)/%.c
 				$(CC) $(CFLAGS) -c $< -o $@
-				
+
+tmp:
+				mkdir -p temp
+
 clean:
 				$(RM) $(OBJ)
 

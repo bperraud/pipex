@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/24 02:11:04 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/25 00:47:45 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,19 @@
 # include "wait.h"
 # include "errno.h"
 
-# define FILE_NAME "filenameyouwontthinkabout"
-# define READ 1
-# define CREATE 0
+//# define FILE_NAME "temp/file"
+# define FILE_NAME "filename"
 
-extern	char **g_envp;
+extern char	**g_envp;
 
 //main
-void    start(int i, int argc, char **argv);
+void	multiple_cmd(int f2, int argc, char **argv);
 int		limiter(char *limiter);
 
 //pipex
-void	pipex(int f1, int f2, char** argv, int index);
-void	pipex2(int f[2], char** paths, char **cmd1, char **cmd2);
-void	pipex_alone(int f1, int f2, char* arg);
+void	pipex(int f1, int f2, char **argv, int index);
+void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2);
+void	pipex_alone(int f1, int f2, char *arg);
 
 //process
 void	exec(char **cmd, char **paths);
@@ -45,7 +44,7 @@ void	wait_proccess(pid_t child1, pid_t child2, int end[2]);
 char	**parsing(char **envp);
 void	copy_file(int f1, int f2);
 char	*create_path(char *path, char *arg);
-int		open_file(char *file, int mode);
+int		open_file(char *file);
 
 // utils
 char	**ft_split(char const *s, char c);
