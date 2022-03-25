@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/25 02:42:51 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/25 04:19:04 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include "wait.h"
 # include "errno.h"
 
-//# define FILE_NAME "temp/file"
-# define FILE_NAME "filename"
+# define FILE_NAME "temp/file"
 
 extern char	**g_envp;
 

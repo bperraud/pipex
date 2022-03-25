@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/25 00:39:41 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/25 04:18:37 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ size_t	find_index(char	*buf)
 	return (i);
 }
 
-// note : créer un répertoire temp lors du makefile pour stocker le fichier temporaire
 int	limiter(char *limiter)
 {
 	int		f1;
