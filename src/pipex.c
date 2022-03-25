@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/24 01:48:08 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/25 03:11:51 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	pipex_alone(int f1, int f2, char *arg)
 {
-	int		status;
 	int		child;
 	char	**paths;
 	char	**cmd_arg;
@@ -24,11 +23,8 @@ void	pipex_alone(int f1, int f2, char *arg)
 	dup2(f1, STDIN_FILENO);
 	dup2(f2, STDOUT_FILENO);
 	child = fork();
-	if (child < 0)
-		return (perror("Fork: "));
 	if (child == 0)
 		exec(cmd_arg, paths);
-	waitpid(child, &status, 0);
 }
 
 void	pipex(int f1, int f2, char **argv, int index)
@@ -53,19 +49,29 @@ void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2)
 	int		end[2];
 	pid_t	child1;
 	pid_t	child2;
+	int		status;
 
 	if (pipe(end) == -1)
-		exit_error(cmd1, cmd2, paths, "Pipe: ");
+		exit_error(cmd1, cmd2, paths);
 	child1 = fork();
 	if (child1 < 0)
-		exit_error(cmd1, cmd2, paths, "Fork: ");
+	{
+		perror("child 1");
+		exit_error(cmd1, cmd2, paths);
+	}
 	if (child1 == 0)
 		child_one(f[0], end, cmd1, paths);
 	child2 = fork();
 	if (child2 < 0)
-		exit_error(cmd1, cmd2, paths, "Fork: ");
+	{
+		perror("child 2");
+		exit_error(cmd1, cmd2, paths);
+	}
 	if (child2 == 0)
 		child_two(f[1], end, cmd2, paths);
 	free_all(cmd1, cmd2, paths);
-	wait_proccess(child1, child2, end);
+	close(end[0]);
+	close(end[1]);
+	waitpid(child1, &status, 0);
+	waitpid(child2, &status, 0);
 }

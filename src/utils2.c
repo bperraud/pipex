@@ -30,14 +30,13 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	exit_error(char **cmd1, char **cmd2, char **path, char *error)
+void	exit_error(char **cmd1, char **cmd2, char **path)
 {
 	free_all(cmd1, cmd2, path);
-	perror(error);
 	exit(EXIT_FAILURE);
 }
 
-static void	free_tab(char **tab)
+void	free_tab(char **tab)
 {
 	int	i;
 
