@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/25 04:19:04 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 01:18:13 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	*create_path(char *path, char *arg);
 int		open_file(char *file);
 
 // utils
-char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -55,5 +54,14 @@ void	ft_putstr_fd(char *s, int fd);
 void	exit_error(char **cmd1, char **cmd2, char **path);
 void	free_all(char **cmd1, char **cmd2, char **path);
 void	free_tab(char **tab);
+
+//split
+char	**ft_split(char const *s, char c);
+char	**split_arg(char const *s, char c);
+char	**ft_split(char const *s, char c);
+char	*ft_strncpy(char *dest, const char *src, unsigned int n);
+void	*free_word(char **dest, int nbr_word);
+int		ft_wordcount(const char *str, char c);
+int		ft_wordlen(const char *str, char c);
 
 #endif

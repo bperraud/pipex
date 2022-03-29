@@ -6,13 +6,13 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 02:42:45 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 02:43:09 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 01:09:31 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static int	ft_wordlen(const char *str, char c)
+int	ft_wordlen(const char *str, char c)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ static int	ft_wordlen(const char *str, char c)
 	return (i);
 }
 
-static int	ft_wordcount(const char *str, char c)
+int	ft_wordcount(const char *str, char c)
 {
 	int	i;
 	int	nbr_word;
@@ -40,7 +40,7 @@ static int	ft_wordcount(const char *str, char c)
 	return (nbr_word);
 }
 
-static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
+char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 {
 	unsigned int	i;
 
@@ -54,7 +54,7 @@ static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 	return (dest);
 }
 
-static void	*free_word(char **dest, int nbr_word)
+void	*free_word(char **dest, int nbr_word)
 {
 	while (nbr_word--)
 		free(dest[nbr_word]);

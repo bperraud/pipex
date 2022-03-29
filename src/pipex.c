@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/25 03:11:51 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/29 23:31:14 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	pipex_alone(int f1, int f2, char *arg)
 	char	**cmd_arg;
 
 	paths = parsing(g_envp);
-	cmd_arg = ft_split(arg, ' ');
+	cmd_arg = split_arg(arg, ' ');
 	dup2(f1, STDIN_FILENO);
 	dup2(f2, STDOUT_FILENO);
 	child = fork();
@@ -37,8 +37,8 @@ void	pipex(int f1, int f2, char **argv, int index)
 	f[0] = f1;
 	f[1] = f2;
 	paths = parsing(g_envp);
-	cmd1 = ft_split(argv[index], ' ');
-	cmd2 = ft_split(argv[index + 1], ' ');
+	cmd1 = split_arg(argv[index], ' ');
+	cmd2 = split_arg(argv[index + 1], ' ');
 	if (!paths | !cmd1 | !cmd2)
 		return (free_all(cmd1, cmd2, paths));
 	pipex2(f, paths, cmd1, cmd2);
