@@ -6,26 +6,11 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 03:39:34 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 03:40:44 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-
-void	pipex_alone(int f1, int f2, char *arg)
-{
-	int		child;
-	char	**paths;
-	char	**cmd_arg;
-
-	paths = parsing(g_envp);
-	cmd_arg = split_arg(arg, ' ');
-	dup2(f1, STDIN_FILENO);
-	dup2(f2, STDOUT_FILENO);
-	child = fork();
-	if (child == 0)
-		exec(cmd_arg, paths);
-}
 
 void	pipex(int f1, int f2, char **argv, int index)
 {

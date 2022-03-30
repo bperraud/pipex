@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 15:23:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/20 22:46:12 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 03:46:01 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 #  undef BUFFER_SIZE
 #  define BUFFER_SIZE 2147483646
 # endif
-
-#  define OPEN_MAX 255
 
 # include <stdlib.h>
 # include <unistd.h>
