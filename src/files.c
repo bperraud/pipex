@@ -6,12 +6,11 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:55 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 03:48:39 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 04:09:55 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-#include "../include/get_next_line.h"
 
 int	open_file(char *file)
 {
