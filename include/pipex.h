@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 04:04:20 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:34:41 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	child_two(int f2, int end[2], char **cmd1, char **paths);
 //files
 char	**parsing(char **envp);
 char	*create_path(char *path, char *arg);
+int		open_file(char *file);
 
 // utils
 char	*ft_strjoin(char const *s1, char const *s2);

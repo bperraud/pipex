@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 03:40:44 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:31:34 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	pipex(int f1, int f2, char **argv, int index)
 void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2)
 {
 	int		end[2];
+	int		status;
 	pid_t	child1;
 	pid_t	child2;
-	int		status;
 
 	if (pipe(end) == -1)
 		exit_error(cmd1, cmd2, paths);
@@ -43,7 +43,6 @@ void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2)
 		exit_error(cmd1, cmd2, paths);
 	if (child1 == 0)
 		child_one(f[0], end, cmd1, paths);
-	waitpid(child1, &status, 0);
 	child2 = fork();
 	if (child2 < 0)
 		exit_error(cmd1, cmd2, paths);
@@ -52,6 +51,6 @@ void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2)
 	free_all(cmd1, cmd2, paths);
 	close(end[0]);
 	close(end[1]);
-	//waitpid(child1, &status, 0);
+	waitpid(child1, &status, 0);
 	waitpid(child2, &status, 0);
 }

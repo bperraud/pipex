@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 04:02:22 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 04:02:22 by bperraud         ###   ########.fr       */
+/*   Created: 2022/03/30 16:00:43 by bperraud          #+#    #+#             */
+/*   Updated: 2022/03/30 16:00:43 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BONUS_H
-# define BONUS_H
+#include "../include/pipex.h"
 
-# define FILE_NAME "temp/file"
+char	**g_envp;
 
-void	multiple_cmd(int f2, int argc, char **argv);
-int		limiter(char *limiter);
+int	main(int argc, char **argv, char **envp)
+{
+	int	f1;
+	int	f2;
 
-#endif
+	if (argc != 5)
+		return (-1);
+	g_envp = envp;
+	f1 = open_file(argv[1]);
+	f2 = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	pipex(f1, f2, argv, 2);
+	close(f1);
+	close(f2);
+	return (0);
+}

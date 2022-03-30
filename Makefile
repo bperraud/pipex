@@ -6,12 +6,12 @@
 #    By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 19:18:03 by bperraud          #+#    #+#              #
-#    Updated: 2022/03/30 04:18:36 by bperraud         ###   ########.fr        #
+#    Updated: 2022/03/30 16:33:54 by bperraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			    = pipex.c files.c utils.c utils2.c split.c split_arg.c process.c
-
+SRC			    = main.c pipex.c files.c utils.c utils2.c split.c split_arg.c process.c
+SRCB			= pipex.c files.c utils.c utils2.c split.c split_arg.c process.c
 BONUS			= bonus.c pipex_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.c
 
 CC				= gcc
@@ -23,7 +23,7 @@ HDIR			= include
 ODIR			= objs
 
 OBJ	  			= $(SRC:.c=.o)
-
+OBJB 			= $(SRCB:c=o)
 BONUS_OBJ		= $(BONUS:.c=.o)
 
 NAME			= pipex
@@ -40,14 +40,14 @@ tmp:
 				mkdir -p temp
 
 clean:			
-				$(RM) $(OBJ) $(BONUS_OBJ)
+				$(RM) $(OBJ) $(BONUS_OBJ) $(OBJB)
 
 fclean:			clean
 				$(RM) $(NAME)
 
 re:				fclean $(NAME)
 
-bonus:			$(OBJ) $(BONUS_OBJ)
-				$(CC) $(OBJ) -o $(NAME) $(BONUS_OBJ)
+bonus:			$(OBJB) $(BONUS_OBJ)
+				$(CC) $(OBJB) -o $(NAME) $(BONUS_OBJ)
 
 .PHONY:			all clean fclean re 
