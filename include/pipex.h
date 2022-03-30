@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 01:18:13 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 03:53:09 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		limiter(char *limiter);
 //pipex
 void	pipex(int f1, int f2, char **argv, int index);
 void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2);
-void	pipex_alone(int f1, int f2, char *arg);
 
 //process
 void	exec(char **cmd, char **paths);
@@ -40,7 +39,6 @@ void	child_two(int f2, int end[2], char **cmd1, char **paths);
 
 //files
 char	**parsing(char **envp);
-void	copy_file(int f1, int f2);
 char	*create_path(char *path, char *arg);
 int		open_file(char *file);
 
