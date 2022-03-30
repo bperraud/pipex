@@ -6,25 +6,11 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 21:21:30 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/24 01:05:04 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 03:28:27 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-
-static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 char	*ft_strdup(const char *s1)
 {
