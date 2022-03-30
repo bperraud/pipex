@@ -15,8 +15,6 @@
 
 # define FILE_NAME "temp/file"
 
-extern char	**g_envp;
-
 void	multiple_cmd(int f2, int argc, char **argv);
 int		open_file(char *file);
 int		limiter(char *limiter);

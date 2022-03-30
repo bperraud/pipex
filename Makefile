@@ -6,7 +6,7 @@
 #    By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 19:18:03 by bperraud          #+#    #+#              #
-#    Updated: 2022/03/30 04:17:03 by bperraud         ###   ########.fr        #
+#    Updated: 2022/03/30 04:18:36 by bperraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,8 @@ $(NAME): 		$(OBJ)
 tmp:
 				mkdir -p temp
 
-clean:
-				$(RM) $(OBJ)
+clean:			
+				$(RM) $(OBJ) $(BONUS_OBJ)
 
 fclean:			clean
 				$(RM) $(NAME)
