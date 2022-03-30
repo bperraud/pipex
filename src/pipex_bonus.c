@@ -6,12 +6,13 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 03:49:14 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 04:05:27 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/bonus.h"
 #include "../include/pipex.h"
-#include "../include/get_next_line.h"
+#include "../include/get_next_line_bonus.h"
 
 char	**g_envp;
 
@@ -39,5 +40,3 @@ int	main(int argc, char **argv, char **envp)
 	close(f1);
 	return (0);
 }
-
-

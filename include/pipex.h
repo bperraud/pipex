@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 03:53:09 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/30 04:04:20 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,7 @@
 # include "wait.h"
 # include "errno.h"
 
-# define FILE_NAME "temp/file"
-
 extern char	**g_envp;
-
-//main
-void	multiple_cmd(int f2, int argc, char **argv);
-int		limiter(char *limiter);
 
 //pipex
 void	pipex(int f1, int f2, char **argv, int index);
@@ -40,7 +34,6 @@ void	child_two(int f2, int end[2], char **cmd1, char **paths);
 //files
 char	**parsing(char **envp);
 char	*create_path(char *path, char *arg);
-int		open_file(char *file);
 
 // utils
 char	*ft_strjoin(char const *s1, char const *s2);

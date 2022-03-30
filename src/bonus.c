@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/bonus.h"
 #include "../include/pipex.h"
 #include "../include/get_next_line_bonus.h"
 
