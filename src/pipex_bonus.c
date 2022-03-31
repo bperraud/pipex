@@ -44,7 +44,7 @@ static void	copy_file(int f1, int f2)
 	}
 }
 
-static size_t	find_index(char	*buf)
+static size_t	find_eof(char	*buf)
 {
 	size_t	i;
 
@@ -64,12 +64,15 @@ int	limiter(char *limiter)
 	len_limiter = ft_strlen(limiter);
 	f1 = open(FILE_NAME, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	n = 0;
-	while (n != len_limiter || ft_strncmp(buf, limiter, len_limiter) != 0)
+	while (1)
 	{
 		write(STDIN_FILENO, "> ", 2);
 		read(STDIN_FILENO, buf, sizeof(buf));
-		n = find_index(buf);
-		write(f1, buf, n + 1);
+		n = find_eof(buf);
+		if (n != len_limiter || ft_strncmp(buf, limiter, len_limiter) != 0)
+			write(f1, buf, n + 1);
+		else
+			break ;
 	}
 	close(f1);
 	f1 = open_file(FILE_NAME);

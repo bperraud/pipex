@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 16:55:02 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/03/31 02:23:45 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv, char **envp)
 		f1 = limiter(argv[2]);
 		f2 = open(argv[argc - 1], O_CREAT | O_RDWR | O_APPEND, 0644);
 		pipex(f1, f2, argv, 3);
+		unlink(FILE_NAME);
 	}
 	else
 	{
