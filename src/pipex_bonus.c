@@ -44,22 +44,12 @@ static void	copy_file(int f1, int f2)
 	}
 }
 
-static size_t	find_eof(char	*buf)
-{
-	size_t	i;
-
-	i = 0;
-	while (buf[i] != '\n')
-		i++;
-	return (i);
-}
-
 int	limiter(char *limiter)
 {
 	int		f1;
-	char	buf[1000];
 	size_t	n;
 	size_t	len_limiter;
+	char	*buf;
 
 	len_limiter = ft_strlen(limiter);
 	f1 = open(FILE_NAME, O_CREAT | O_RDWR | O_TRUNC, 0644);
@@ -67,8 +57,8 @@ int	limiter(char *limiter)
 	while (1)
 	{
 		write(STDIN_FILENO, "> ", 2);
-		read(STDIN_FILENO, buf, sizeof(buf));
-		n = find_eof(buf);
+		buf = get_next_line(1);
+		n = ft_strlen(buf) - 1;
 		if (n != len_limiter || ft_strncmp(buf, limiter, len_limiter) != 0)
 			write(f1, buf, n + 1);
 		else
