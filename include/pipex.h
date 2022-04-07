@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 16:34:41 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:13:58 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "stdlib.h"
 # include "unistd.h"
 # include "fcntl.h"
-# include "wait.h"
+# include "sys/wait.h"
 # include "errno.h"
 
 extern char	**g_envp;

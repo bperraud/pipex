@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **envp)
 	int	f2;
 
 	if (argc != 5)
-		return (-1);
+		return (0);
 	g_envp = envp;
 	f1 = open_file(argv[1]);
 	f2 = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
