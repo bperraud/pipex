@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus.c                                            :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 03:47:33 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 03:47:33 by bperraud         ###   ########.fr       */
+/*   Created: 2022/04/19 23:44:09 by bperraud          #+#    #+#             */
+/*   Updated: 2022/04/19 23:44:09 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 void	exec_cmd(char *arg, char **envp)
 {
