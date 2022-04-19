@@ -6,11 +6,11 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:04:39 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 04:19:09 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/04/19 23:10:58 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line_bonus.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen_gnl(const char *s)
 {

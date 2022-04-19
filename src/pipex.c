@@ -1,85 +1,108 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/04/19 16:22:01 by bperraud         ###   ########.fr       */
+/*   Created: 2022/03/30 03:47:33 by bperraud          #+#    #+#             */
+/*   Updated: 2022/03/30 03:47:33 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
+#include "get_next_line_bonus.h"
 
-/*
-void	pipex(char *cmd, char **envp)
+void	exec_cmd(char *arg, char **envp)
 {
-	pid_t	pid;
+	int		i;
+	char	*cmd;
+	char	**paths;
+	char	**cmd_arg;
+
+	paths = parsing(envp);
+	cmd_arg = split_arg(arg, ' ');
+	i = -1;
+	while (paths[++i])
+	{
+		cmd = create_path(paths[i], cmd_arg[0]);
+		if (!cmd)
+		{
+			free_tab(cmd_arg);
+			free_tab(paths);
+			return ;
+		}
+		execve(cmd, cmd_arg, envp);
+		free(cmd);
+	}
+	ft_putstr_fd("pipex: ", 2);
+	ft_putstr_fd(cmd_arg[0], 2);
+	ft_putstr_fd(": command not found\n", 2);
+	exit(128);
+}
+
+int	here_doc(char *limiter)
+{
+	int		f1;
+	size_t	len_limiter;
+	char	*buf;
+
+	len_limiter = ft_strlen(limiter);
+	f1 = open(FILE_NAME, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	while (1)
+	{
+		write(STDIN_FILENO, "> ", 2);
+		buf = get_next_line(1);
+		if (buf && (ft_strlen(buf) - 1 != len_limiter
+				|| ft_strncmp(buf, limiter, len_limiter) != 0))
+			write(f1, buf, ft_strlen(buf));
+		else
+			break ;
+	}
+	close(f1);
+	f1 = open_file(FILE_NAME);
+	return (f1);
+}
+
+void	pipex_alone(char *cmd, char**envp)
+{
+	int		pid;
 	int		pipe_fd[2];
-	int		status;
 
 	if (pipe(pipe_fd) < 0)
-		error_exit();
+		exit(EXIT_FAILURE);
 	pid = fork();
 	if (!pid)
 	{
 		close(pipe_fd[0]);
 		dup2(pipe_fd[1], 1);
-		//exec_cmd(cmd, envp);
-		exec(cmd, paths);
+		exec_cmd(cmd, envp);
 	}
 	else
 	{
 		close(pipe_fd[1]);
 		dup2(pipe_fd[0], 0);
-		waitpid(-1, &status, 0);
 	}
 }
 
-
-
-void	pipex(int f1, int f2, char **argv, int index)
+void	multiple_cmd(int fd[3], int argc, char **argv, char **envp)
 {
-	char	**paths;
-	char	**cmd1;
-	char	**cmd2;
-	int		f[2];
+	int	fd_in;
+	int	fd_out;
+	int	i;
 
-	f[0] = f1;
-	f[1] = f2;
-	paths = parsing(g_envp);
-	cmd1 = split_arg(argv[index], ' ');
-	cmd2 = split_arg(argv[index + 1], ' ');
-	if (!paths | !cmd1 | !cmd2)
-		return (free_all(cmd1, cmd2, paths));
-	pipex2(f, paths, cmd1, cmd2);
+	fd_in = fd[0];
+	fd_out = fd[1];
+	i = fd[2];
+	dup2(fd_in, 0);
+	close(fd_in);
+	pipex_alone(argv[i], envp);
+	while (++i < argc - 2)
+		pipex_alone(argv[i], envp);
+	while (waitpid(-1, NULL, 0) > 0)
+		;
+	dup2(fd_out, 1);
+	close(fd_out);
+	if (!fork())
+		exec_cmd(argv[argc - 2], envp);
 }
-
-
-void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2)
-{
-	int		end[2];
-	int		status;
-	pid_t	child1;
-	pid_t	child2;
-
-	if (pipe(end) == -1)
-		exit_error(cmd1, cmd2, paths);
-	child1 = fork();
-	if (child1 < 0)
-		exit_error(cmd1, cmd2, paths);
-	if (child1 == 0)
-		child_one(f[0], end, cmd1, paths);
-	child2 = fork();
-	if (child2 < 0)
-		exit_error(cmd1, cmd2, paths);
-	if (child2 == 0)
-		child_two(f[1], end, cmd2, paths);
-	free_all(cmd1, cmd2, paths);
-	close(end[0]);
-	close(end[1]);
-	waitpid(child1, &status, 0);
-	waitpid(child2, &status, 0);
-}
-*/

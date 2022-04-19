@@ -6,11 +6,11 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 02:42:45 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 01:09:31 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/04/19 23:10:49 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 int	ft_wordlen(const char *str, char c)
 {

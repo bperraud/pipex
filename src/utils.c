@@ -6,11 +6,11 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 21:21:30 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 03:28:27 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/04/19 23:10:44 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 char	*ft_strdup(const char *s1)
 {
