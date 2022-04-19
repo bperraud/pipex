@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:43 by bperraud          #+#    #+#             */
-/*   Updated: 2022/04/19 16:08:05 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:47:02 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	pipex(int f1, int f2, char **argv, int index);
 void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2);
 
 //process
-void	exec(char **cmd, char **paths, char **envp);
+void	exec(char *arg, char **envp);
 void	child_one(int f1, int end[2], char **cmd1, char **paths);
 void	child_two(int f2, int end[2], char **cmd1, char **paths);
 

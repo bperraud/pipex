@@ -6,7 +6,7 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:38:08 by bperraud          #+#    #+#             */
-/*   Updated: 2022/04/19 19:19:51 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:50:13 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int	main(int argc, char **argv, char **envp)
 
 	int fd[2];
 
-	/*
-	if (argc < 5)
+	if (argc < 4)
 		return (0);
-		*/
 	if (ft_strncmp(argv[1], "here_doc", ft_strlen(argv[1])) == 0 && argc == 6)
 	{
 		f1 = limiter(argv[2]);

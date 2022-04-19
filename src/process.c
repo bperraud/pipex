@@ -42,11 +42,15 @@ void	child_two(int f2, int end[2], char **cmd_arg, char **paths)
 }
 */
 
-void	exec(char **cmd_arg, char **paths, char **envp)
+void	exec(char *arg, char **envp)
 {
 	int		i;
 	char	*cmd;
+	char	**paths;
+	char	**cmd_arg;
 
+	paths = parsing(envp);
+	cmd_arg = split_arg(arg, ' ');
 	i = -1;
 	while (paths[++i])
 	{
