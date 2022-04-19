@@ -51,27 +51,25 @@ int	limiter(char *limiter)
 	return (f1);
 }
 
-void	pipex_alone(int input_file, int output_file, char *arg, char**envp)
+void	pipex_alone(char *cmd, char**envp)
 {
-	int		child;
+	int		pid;
 	int		pipe_fd[2];
 	int		status;
 
 	if (pipe(pipe_fd) < 0)
-		//exit_error(NULL, NULL, cmd_arg);
-		;	// changer
-	child = fork();
-	if (!child)
+		exit(EXIT_FAILURE);
+	pid = fork();
+	if (!pid)
 	{
 		close(pipe_fd[0]);
 		dup2(pipe_fd[1], 1);
-		exec(arg, envp);
+		exec_cmd(cmd, envp);
 	}
 	else
 	{
 		close(pipe_fd[1]);
 		dup2(pipe_fd[0], 0);
-		//waitpid(-1, &status, 0);
 	}
 }
 
@@ -90,20 +88,18 @@ void	multiple_cmd(int fd[2], int argc, char **argv, char **envp)
 	dup2(fd_in, 0);			// sans ça : lit sur l'entrée standart
 	close(fd_in);			// toujours fermé l'entrée du pipe
 
-	pipex_alone(fd_in, fd_out, argv[2], envp);
+	pipex_alone(argv[2], envp);
+	i = 2;
 	while (++i < argc - 2)
-		pipex_alone(fd_in, fd_out, argv[i], envp);
+		pipex_alone(argv[i], envp);
 
 	while (waitpid(-1, NULL, 0) > 0)
 		;
-
 
 	dup2(fd_out, 1);		// output
 	close(fd_out);
 
 	// derniere commande
 	if (!fork())
-		exec(argv[argc - 2], envp);
-
-	unlink(FILE_NAME);
+		exec_cmd(argv[argc - 2], envp);
 }

@@ -42,7 +42,7 @@ void	child_two(int f2, int end[2], char **cmd_arg, char **paths)
 }
 */
 
-void	exec(char *arg, char **envp)
+void	exec_cmd(char *arg, char **envp)
 {
 	int		i;
 	char	*cmd;
