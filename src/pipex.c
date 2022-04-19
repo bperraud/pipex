@@ -6,11 +6,38 @@
 /*   By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:34:51 by bperraud          #+#    #+#             */
-/*   Updated: 2022/03/30 16:31:34 by bperraud         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:22:01 by bperraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+/*
+void	pipex(char *cmd, char **envp)
+{
+	pid_t	pid;
+	int		pipe_fd[2];
+	int		status;
+
+	if (pipe(pipe_fd) < 0)
+		error_exit();
+	pid = fork();
+	if (!pid)
+	{
+		close(pipe_fd[0]);
+		dup2(pipe_fd[1], 1);
+		//exec_cmd(cmd, envp);
+		exec(cmd, paths);
+	}
+	else
+	{
+		close(pipe_fd[1]);
+		dup2(pipe_fd[0], 0);
+		waitpid(-1, &status, 0);
+	}
+}
+
+
 
 void	pipex(int f1, int f2, char **argv, int index)
 {
@@ -28,6 +55,7 @@ void	pipex(int f1, int f2, char **argv, int index)
 		return (free_all(cmd1, cmd2, paths));
 	pipex2(f, paths, cmd1, cmd2);
 }
+
 
 void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2)
 {
@@ -54,3 +82,4 @@ void	pipex2(int f[2], char **paths, char **cmd1, char **cmd2)
 	waitpid(child1, &status, 0);
 	waitpid(child2, &status, 0);
 }
+*/

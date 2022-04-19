@@ -12,6 +12,7 @@
 
 #include "../include/pipex.h"
 
+/*
 void	child_one(int f1, int end[2], char **cmd_arg, char **paths)
 {
 	if (f1 < 0)
@@ -39,8 +40,9 @@ void	child_two(int f2, int end[2], char **cmd_arg, char **paths)
 	close(end[1]);
 	exec(cmd_arg, paths);
 }
+*/
 
-void	exec(char **cmd_arg, char **paths)
+void	exec(char **cmd_arg, char **paths, char **envp)
 {
 	int		i;
 	char	*cmd;
@@ -55,7 +57,7 @@ void	exec(char **cmd_arg, char **paths)
 			free_tab(paths);
 			return ;
 		}
-		execve(cmd, cmd_arg, g_envp);
+		execve(cmd, cmd_arg, envp);
 		free(cmd);
 	}
 	ft_putstr_fd("pipex: ", 2);

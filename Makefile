@@ -6,7 +6,7 @@
 #    By: bperraud <bperraud@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/19 19:18:03 by bperraud          #+#    #+#              #
-#    Updated: 2022/04/07 01:45:36 by bperraud         ###   ########.fr        #
+#    Updated: 2022/04/19 16:23:46 by bperraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BONUS			= bonus.c pipex_bonus.c get_next_line_bonus.c get_next_line_utils_bonus.
 
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror 
+#CFLAGS			= -Wall -Wextra -Werror
 
 SDIR			= src
 HDIR			= include
@@ -39,7 +39,7 @@ $(NAME): 		$(OBJ)
 tmp:
 				mkdir -p temp
 
-clean:			
+clean:
 				$(RM) $(OBJ) $(BONUS_OBJ) $(OBJB)
 
 fclean:			clean
@@ -50,4 +50,4 @@ re:				fclean $(NAME)
 bonus:			$(OBJB) $(BONUS_OBJ)
 				$(CC) $(OBJB) -o $(NAME) $(BONUS_OBJ)
 
-.PHONY:			all clean fclean re 
+.PHONY:			all clean fclean re
