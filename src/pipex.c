@@ -72,16 +72,16 @@ void	pipex_alone(char *cmd, char**envp)
 	if (pipe(pipe_fd) < 0)
 		exit(EXIT_FAILURE);
 	pid = fork();
-	if (!pid)
+	if (pid)
+	{
+		close(pipe_fd[1]);
+		dup2(pipe_fd[0], 0);
+	}
+	else
 	{
 		close(pipe_fd[0]);
 		dup2(pipe_fd[1], 1);
 		exec_cmd(cmd, envp);
-	}
-	else
-	{
-		close(pipe_fd[1]);
-		dup2(pipe_fd[0], 0);
 	}
 }
 
